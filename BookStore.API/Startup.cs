@@ -30,7 +30,7 @@ namespace BookStore.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<BookStoreContext>
-                (options=>options.UseSqlServer("Server=.;Database=BookStoreAPI;Integrated Security=True"));
+                (options=>options.UseSqlServer(Configuration.GetConnectionString("BookStoreDB")));
             services.AddControllers();
             services.AddTransient<IBookRepository, BookRepository>();
 
