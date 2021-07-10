@@ -61,5 +61,13 @@ namespace BookStore.API.Controllers
 
         }
 
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteBook([FromRoute] int id)
+        {
+            await _bookRepository.DeleteBookAsyn(id);
+            return Ok();
+
+        }
+
     }
 }
