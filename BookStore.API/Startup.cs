@@ -30,11 +30,19 @@ namespace BookStore.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<BookStoreContext>
-                (options=>options.UseSqlServer(Configuration.GetConnectionString("BookStoreDB")));
+                (options => options.UseSqlServer(Configuration.GetConnectionString("BookStoreDB")));
             services.AddControllers().AddNewtonsoftJson();
             services.AddTransient<IBookRepository, BookRepository>();
             services.AddAutoMapper(typeof(Startup));
 
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(builder =>
+                {
+                    builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+                });
+            });
+        
 
 
             services.AddSwaggerGen(c =>
@@ -56,6 +64,7 @@ namespace BookStore.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseCors();
 
             app.UseAuthorization();
 
