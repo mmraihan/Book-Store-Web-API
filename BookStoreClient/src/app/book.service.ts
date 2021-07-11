@@ -14,4 +14,9 @@ export class BookService {
     return this.http.get(this.basePath);
 
   }
+
+  public addBook(book: any): Observable<any>{
+    return this.http.post(this.basePath, book);
+
+  }
 }
