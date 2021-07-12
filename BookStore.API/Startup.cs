@@ -40,7 +40,9 @@ namespace BookStore.API
 
             services.AddControllers().AddNewtonsoftJson();
             services.AddTransient<IBookRepository, BookRepository>();
+
             services.AddTransient<IAccountRepository, AccountRepository>();
+
             services.AddAutoMapper(typeof(Startup));
 
             services.AddCors(options =>
@@ -50,7 +52,7 @@ namespace BookStore.API
                     builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
                 });
             });
-        
+
 
 
             services.AddSwaggerGen(c =>
